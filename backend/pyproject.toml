@@ -1,0 +1,27 @@
+[project]
+name = "cabin-agent"
+version = "0.2.0"
+description = "Local cabin assistant using NVIDIA NeMo Agent Toolkit"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "nvidia-nat==1.9.0",
+  "nvidia-nat-profiler==1.9.0",
+  "nvidia-nat-langchain[openai]==1.9.0",
+  "fastapi>=0.142,<0.143",
+  "httpx>=0.28,<0.29",
+  "uvicorn>=0.54,<0.55",
+]
+
+[dependency-groups]
+dev = ["pytest>=9,<10", "pytest-asyncio>=1,<2"]
+
+[project.entry-points.'nat.components']
+cabin_tools = "cabin_agent.tools"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
