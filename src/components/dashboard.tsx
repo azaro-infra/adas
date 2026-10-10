@@ -145,7 +145,7 @@ export function Dashboard() {
         <Link className="brand" href="/">
           <span className="brand-mark">C</span>
           <span>
-            CABIN<span className="brand-light"> / LAB</span>
+            CABIN<span className="brand-light"> ASSISTANT</span>
           </span>
         </Link>
         <nav>
@@ -546,7 +546,7 @@ export function Dashboard() {
         </section>
         <footer>
           <span>
-            CABIN / LAB{" "}
+            CABIN ASSISTANT{" "}
             <span className="muted">
               · NVIDIA NeMo Agent Toolkit + local Ollama
             </span>

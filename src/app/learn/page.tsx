@@ -43,7 +43,7 @@ export default function Learn() {
     <div className="app-shell">
       <header className="topbar">
         <Link href="/" className="brand">
-          <span className="brand-mark">C</span>CABIN / LAB
+          <span className="brand-mark">C</span>CABIN ASSISTANT
         </Link>
         <nav>
           <Link href="/">Workbench</Link>

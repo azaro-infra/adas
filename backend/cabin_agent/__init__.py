@@ -1,1 +1,1 @@
-"""Cabin Lab's NVIDIA NeMo Agent Toolkit integration."""
+"""Cabin Assistant's NVIDIA NeMo Agent Toolkit integration."""

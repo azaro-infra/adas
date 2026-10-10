@@ -1,12 +1,18 @@
-# Cabin Lab
+# Cabin Assistant
 
-A local **NVIDIA NeMo Agent Toolkit + Ollama + Next.js** cabin-assistant demo for macOS and Windows laptops. Inspired by [NVIDIA’s in-vehicle agent architecture](https://developer.nvidia.com/blog/how-to-build-in-vehicle-ai-agents-with-nvidia-from-cloud-to-car/).
+A local **NVIDIA NeMo Agent Toolkit + Ollama + Next.js** cabin-assistant application for macOS and Windows laptops. Inspired by [NVIDIA’s in-vehicle agent architecture](https://developer.nvidia.com/blog/how-to-build-in-vehicle-ai-agents-with-nvidia-from-cloud-to-car/).
 
-This version uses NVIDIA’s actual **NeMo Agent Toolkit 1.9.0** built-in `tool_calling_agent`. It selects registered tools, executes them, sends their results back to the model, and produces a final answer. Ollama runs Qwen3-VL on your laptop. Vehicle state is simulated; this is a cabin assistant prototype, not a driving system. No NVIDIA automotive hardware, cloud account, or API key is required.
+**This repository contains usable application code that you can install, run locally, modify, and build on.** It supports your own video files or webcam, local visual question answering, automatic frame observation, and inspectable agent tool execution. The included traffic clip is sample input; the application works with your own footage.
+
+The application uses NVIDIA’s actual **NeMo Agent Toolkit 1.9.0** built-in `tool_calling_agent`. It selects registered tools, executes them, sends their results back to the model, and produces a final answer. Ollama runs Qwen3-VL on your laptop. Vehicle telemetry and cabin controls currently use simulated state; connecting real vehicle APIs requires a separate integration. This application does not control driving. No NVIDIA automotive hardware, cloud account, or API key is required.
+
+![Cabin Assistant dashboard showing local video analysis and agent tool execution](docs/assets/cabin-assistant.gif)
+
+[Recording details and footage attribution](docs/assets/README.md).
 
 ## Install on your laptop
 
-**Start with the step-by-step guide: [macOS](docs/INSTALL.md#macos) · [Windows PowerShell](docs/INSTALL.md#windows-powershell).** It covers installing prerequisites, starting the services, trying the demo, and troubleshooting.
+**Start with the step-by-step guide: [macOS](docs/INSTALL.md#macos) · [Windows PowerShell](docs/INSTALL.md#windows-powershell).** It covers installing prerequisites, starting the services, using the application, and troubleshooting.
 
 Prerequisites: Git, Node.js 22 LTS or 24 LTS, native [Ollama](https://ollama.com/download), and [uv](https://docs.astral.sh/uv/getting-started/installation/). `uv` installs the pinned Python 3.12 environment. Allow space for dependencies and the approximately 3.3 GB model download; 16 GB or more RAM is a practical starting recommendation, not a verified minimum. CPU-only inference can be slow. Dependencies and weights need internet for setup; inference runs locally afterward.
 
@@ -73,7 +79,7 @@ All model requests → native Ollama (127.0.0.1:11434) → supported local GPU o
 
 The model is shared by orchestration and vision. The agent initially receives text; `inspect_frame` supplies the image to a separate call of the same local model. This makes visual inspection an explicit, inspectable tool. The YAML’s `_type: openai` means the **OpenAI-compatible API protocol served by local Ollama**. It does not call OpenAI or require a real API key. Its URL is fixed to loopback.
 
-What is NVIDIA software here: NeMo’s workflow loader, configuration, tool registration, built-in agent, and profiler events. What is substituted: native Ollama for NVIDIA automotive inference engines, Qwen3-VL for model inference, browser simulation for vehicle APIs. DriveOS, TensorRT Edge-LLM, NVIDIA automotive hardware, speech, and cloud agents are not part of this demo. Ollama uses Metal on Apple Silicon and may use CUDA or another supported backend on Windows.
+What is NVIDIA software here: NeMo’s workflow loader, configuration, tool registration, built-in agent, and profiler events. What is substituted: native Ollama for NVIDIA automotive inference engines, Qwen3-VL for model inference, browser simulation for vehicle APIs. DriveOS, TensorRT Edge-LLM, NVIDIA automotive hardware, speech, and cloud agents are not part of the current application. Ollama uses Metal on Apple Silicon and may use CUDA or another supported backend on Windows.
 
 ## File map and reading order
 
@@ -113,7 +119,7 @@ Follow one temperature request:
 6. NAT passes the real tool result back to the model. The model writes the final answer. The loop permits four tool rounds before failing.
 7. Python returns the answer, simulation, tool executions, and summarized NeMo events. Next.js validates the response. The browser updates state only after success; cancellation, source changes, and failures discard pending results.
 
-No persistent Python vehicle state is shared between requests. Switching video source clears text history. A browser refresh resets the simulator. The explicit request policy is a conservative demo rule, not a general intent classifier or a security boundary for a real vehicle.
+No persistent Python vehicle state is shared between requests. Switching video source clears text history. A browser refresh resets the simulator. The explicit request policy is a conservative rule for simulated cabin controls, not a general intent classifier or a security boundary for a real vehicle.
 
 ## Change the model
 

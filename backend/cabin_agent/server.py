@@ -35,7 +35,7 @@ async def lifespan(app: FastAPI):
         yield
 
 
-app = FastAPI(title="Cabin Lab — NVIDIA NeMo Agent Toolkit", lifespan=lifespan)
+app = FastAPI(title="Cabin Assistant — NVIDIA NeMo Agent Toolkit", lifespan=lifespan)
 
 
 @app.middleware("http")

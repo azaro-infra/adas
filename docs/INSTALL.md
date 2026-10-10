@@ -1,6 +1,6 @@
-# Run Cabin Lab on your laptop
+# Run Cabin Assistant on your laptop
 
-Cabin Lab lets you ask questions about a video frame, read simulated vehicle information, and change a simulated cabin temperature. You can inspect the actual NVIDIA NeMo tool calls and their results. The included sample video works without a webcam.
+Cabin Assistant lets you ask questions about a video frame, read simulated vehicle information, and change a simulated cabin temperature. You can inspect the actual NVIDIA NeMo tool calls and their results. The included sample video works without a webcam.
 
 Everything runs on your laptop after installation. You do not need a cloud API key, NVIDIA account, paid service, or automotive hardware. This project uses NeMo Agent Toolkit; it does not install DriveOS or control a car.
 

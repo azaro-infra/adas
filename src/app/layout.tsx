@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Cabin Lab — Local vehicle AI",
+  title: "Cabin Assistant — Local vehicle AI",
   description:
     "An inspectable local vision-language assistant for learning in-vehicle AI architecture.",
 };
